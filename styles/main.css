@@ -104,7 +104,9 @@ h2 {
   width: 15px;
   height: 15px;
   border-radius: 50%;
+  border-color: transparent;
   background: whitesmoke;
+  border-color: #d3d3d3;
   cursor: pointer;
 }
 
@@ -112,18 +114,22 @@ h2 {
   width: 15px;
   height: 15px;
   border-radius: 50%;
+  border-color: transparent;
   background: whitesmoke;
+  border-color: #d3d3d3;
   cursor: pointer;
 }
 
 .teal::-webkit-slider-thumb,
 .teal::-moz-range-thumb {
   background: teal;
+  border-color: transparent;
 }
 
 .orangered::-webkit-slider-thumb,
 .orangered::-moz-range-thumb {
   background: orangered;
+  border-color: transparent;
 }
 
 /* Pie chart */

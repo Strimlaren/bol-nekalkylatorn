@@ -11,6 +11,9 @@ const amortering = document.querySelector(
 const amortering_field = document.querySelector(
   "#amorteringstid-field"
 ) as HTMLInputElement;
+const total_kostnad = document.querySelector(
+  ".total-lånekostnad"
+) as HTMLElement;
 
 /* Update the current slider values. No type validation is required here
 because we are using values from sliders which user cannot interfere with. */
@@ -80,4 +83,20 @@ function is_valid_number(value: string): boolean {
 
 function calculate(): void {
   console.log("Calculations were conducted.");
+
+  const P: number = Number(lånebelopp_field.value);
+  const r: number = Number(ränta_field.value) / 1200;
+  const n: number = Number(amortering_field.value) * 12;
+
+  const täljare: number = r * (1 + r) ** n;
+  const nämnare: number = (1 + r) ** n - 1;
+
+  const M: string = Number(
+    (P * (täljare / nämnare)).toFixed(0)
+  ).toLocaleString();
+
+  if (ränta_field.value === "0")
+    total_kostnad.innerText = Number((P / n).toFixed(0)).toLocaleString();
+  else total_kostnad.innerText = M;
+  // total_kostnad.innerText = String(M).toLocaleString();
 }

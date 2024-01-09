@@ -6,6 +6,7 @@ const ränta = document.querySelector("#ränta");
 const ränta_field = document.querySelector("#ränta-field");
 const amortering = document.querySelector("#amorteringstid");
 const amortering_field = document.querySelector("#amorteringstid-field");
+const total_kostnad = document.querySelector(".total-lånekostnad");
 /* Update the current slider values. No type validation is required here
 because we are using values from sliders which user cannot interfere with. */
 lånebelopp.oninput = () => {
@@ -65,4 +66,15 @@ function is_valid_number(value) {
 }
 function calculate() {
     console.log("Calculations were conducted.");
+    const P = Number(lånebelopp_field.value);
+    const r = Number(ränta_field.value) / 1200;
+    const n = Number(amortering_field.value) * 12;
+    const täljare = r * (1 + r) ** n;
+    const nämnare = (1 + r) ** n - 1;
+    const M = Number((P * (täljare / nämnare)).toFixed(0)).toLocaleString();
+    if (ränta_field.value === "0")
+        total_kostnad.innerText = Number((P / n).toFixed(0)).toLocaleString();
+    else
+        total_kostnad.innerText = M;
+    // total_kostnad.innerText = String(M).toLocaleString();
 }
