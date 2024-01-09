@@ -1,3 +1,4 @@
+// HTML Elements
 const lånebelopp = document.querySelector("#lånebelopp") as HTMLInputElement;
 const lånebelopp_field = document.querySelector(
   "#lånebelopp-field"
@@ -11,17 +12,22 @@ const amortering_field = document.querySelector(
   "#amorteringstid-field"
 ) as HTMLInputElement;
 
-// Update the current slider values
+/* Update the current slider values. No type validation is required here
+because we are using values from sliders which user cannot interfere with. */
 lånebelopp.oninput = () => {
   lånebelopp_field.value = lånebelopp.value;
+  calculate();
 };
 ränta.oninput = () => {
   ränta_field.value = ränta.value;
+  calculate();
 };
 amortering.oninput = () => {
   amortering_field.value = amortering.value;
+  calculate();
 };
 
+/* Eventlitseners for all three text input fields on enter and lose focus. */
 lånebelopp_field.addEventListener("keydown", (event) => {
   if (event.key === "Enter") check_field(lånebelopp_field, lånebelopp);
 });
@@ -41,25 +47,28 @@ amortering_field.addEventListener("blur", () =>
   check_field(amortering_field, amortering)
 );
 
-function check_field(node: HTMLInputElement, slider: HTMLInputElement): void {
-  if (is_valid_number(node.value)) {
-    node.classList.remove("failed");
-    slider.value = node.value;
-    if (validate()) calculate();
-  } else node.classList.add("failed");
+/* Checks if individual field(s) contain valid numbers. Do calculation if 
+all other fields are also valid */
+function check_field(field: HTMLInputElement, slider: HTMLInputElement): void {
+  if (is_valid_number(field.value)) {
+    field.classList.remove("failed");
+    slider.value = field.value;
+    validate();
+  } else field.classList.add("failed");
 }
 
-function validate(): boolean {
+// Checks if all fields contain valid numbers
+function validate(): void {
   if (
     is_valid_number(lånebelopp_field.value) &&
     is_valid_number(ränta_field.value) &&
     is_valid_number(amortering_field.value)
   ) {
     calculate();
-    return true;
-  } else return false;
+  }
 }
 
+// Check if a string from input element contains a valid integer/float
 function is_valid_number(value: string): boolean {
   return /^\d+(\.\d+)?$/.test(value);
 }
