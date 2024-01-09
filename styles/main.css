@@ -3,6 +3,7 @@
 *,
 ::before,
 ::after {
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
   list-style-type: none;
@@ -40,11 +41,11 @@ h2 {
 .results-section {
   background: whitesmoke;
   width: 50%;
-  padding: 48px 12px;
+  padding: 48px 12px 0 12px;
 }
 
 .settings-section {
-  height: 50vh;
+  /* height: auto; */
   margin-top: auto;
 }
 
@@ -155,4 +156,14 @@ h6 {
   background-color: rgba(255, 0, 0, 0.256);
 }
 
-@media (max-width: 900px) {}
+@media (max-width: 960px) {
+  main {
+    flex-direction: column;
+    width: 475px;
+  }
+
+  .settings-section,
+  .results-section {
+    width: 100%;
+  }
+}

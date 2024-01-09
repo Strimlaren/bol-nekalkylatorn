@@ -76,5 +76,4 @@ function calculate() {
         total_kostnad.innerText = Number((P / n).toFixed(0)).toLocaleString();
     else
         total_kostnad.innerText = M;
-    // total_kostnad.innerText = String(M).toLocaleString();
 }
