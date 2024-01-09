@@ -68,11 +68,15 @@ h2 {
   border-radius: 5px;
 }
 
+.total-lånekostnad {
+  font-size: 2.8rem;
+  color: teal;
+}
 
 /* SLIDER */
 
 .slidecontainer {
-  width: 291px;
+  width: 300px;
   margin: 1rem 0.5rem 1rem 0;
   display: inline-block;
 }
@@ -100,7 +104,7 @@ h2 {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #04AA6D;
+  background: whitesmoke;
   cursor: pointer;
 }
 
@@ -108,10 +112,41 @@ h2 {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #04AA6D;
+  background: whitesmoke;
   cursor: pointer;
+}
+
+.teal::-webkit-slider-thumb,
+.teal::-moz-range-thumb {
+  background: teal;
+}
+
+.orangered::-webkit-slider-thumb,
+.orangered::-moz-range-thumb {
+  background: orangered;
+}
+
+/* Pie chart */
+
+.pie-header {
+  display: flex;
+  gap: 1rem;
+}
+
+h6 {
+  font-weight: 300;
+}
+
+.pie {
+  width: 97px;
+  height: 97px;
+  background-image: conic-gradient(teal 64%, orangered 64%);
+  border-radius: 50%
 }
 
 .failed {
   border-color: red;
+  background-color: rgba(255, 0, 0, 0.256);
 }
+
+@media (max-width: 900px) {}

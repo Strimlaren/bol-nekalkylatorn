@@ -41,6 +41,10 @@ all other fields are also valid */
 function check_field(field, slider) {
     if (is_valid_number(field.value)) {
         field.classList.remove("failed");
+        if (Number(field.value) > Number(field.getAttribute("max")))
+            field.value = String(field.getAttribute("max"));
+        else if (Number(field.value) < Number(field.getAttribute("min")))
+            field.value = String(field.getAttribute("min"));
         slider.value = field.value;
         validate();
     }
