@@ -74,6 +74,13 @@ h2 {
   color: teal;
 }
 
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.21);
+}
+
 /* SLIDER */
 
 .slidecontainer {
@@ -138,6 +145,7 @@ h2 {
 .pie-header {
   display: flex;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 h6 {

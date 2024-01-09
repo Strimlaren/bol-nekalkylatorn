@@ -73,7 +73,10 @@ function calculate() {
     const nämnare = (1 + r) ** n - 1;
     const M = Number((P * (täljare / nämnare)).toFixed(0)).toLocaleString();
     if (ränta_field.value === "0")
-        total_kostnad.innerText = Number((P / n).toFixed(0)).toLocaleString();
+        stats_månadskonstnad.innerText = Number((P / n).toFixed(0)).toLocaleString();
     else
-        total_kostnad.innerText = M;
+        stats_månadskonstnad.innerText = M;
 }
+const stats_månadskonstnad = document.querySelector("#stats-månadskostnad");
+const stats_ränta = document.querySelector("#stats-ränta");
+const stats_lånebelopp = document.querySelector("#stats-lånebelopp");

@@ -96,6 +96,16 @@ function calculate(): void {
   ).toLocaleString();
 
   if (ränta_field.value === "0")
-    total_kostnad.innerText = Number((P / n).toFixed(0)).toLocaleString();
-  else total_kostnad.innerText = M;
+    stats_månadskonstnad.innerText = Number(
+      (P / n).toFixed(0)
+    ).toLocaleString();
+  else stats_månadskonstnad.innerText = M;
 }
+
+const stats_månadskonstnad = document.querySelector(
+  "#stats-månadskostnad"
+) as HTMLElement;
+const stats_ränta = document.querySelector("#stats-ränta") as HTMLElement;
+const stats_lånebelopp = document.querySelector(
+  "#stats-lånebelopp"
+) as HTMLElement;
