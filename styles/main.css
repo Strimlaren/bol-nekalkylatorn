@@ -145,10 +145,22 @@ h6 {
 }
 
 .pie {
-  width: 97px;
-  height: 97px;
+  width: 98px;
+  height: 98px;
   background-image: conic-gradient(teal 64%, orangered 64%);
-  border-radius: 50%
+  border-radius: 50%;
+  position: relative;
+}
+
+.pie.hollow::after {
+  content: '';
+  position: absolute;
+  height: 70px;
+  width: 70px;
+  top: 14px;
+  left: 14px;
+  border-radius: 50%;
+  background-color: whitesmoke;
 }
 
 .failed {
