@@ -30,7 +30,9 @@ lånebelopp_field.addEventListener("keydown", (event) => {
     if (event.key === "Enter")
         check_field(lånebelopp_field, lånebelopp);
 });
-lånebelopp_field.addEventListener("blur", () => check_field(lånebelopp_field, lånebelopp));
+lånebelopp_field.addEventListener("blur", () => {
+    check_field(lånebelopp_field, lånebelopp);
+});
 ränta_field.addEventListener("keydown", (event) => {
     if (event.key === "Enter")
         check_field(ränta_field, ränta);
@@ -84,8 +86,11 @@ function calculate() {
     const täljare = r * (1 + r) ** n;
     const nämnare = (1 + r) ** n - 1;
     const M = Number((P * (täljare / nämnare)).toFixed(0)).toLocaleString();
-    if (ränta_field.value === "0")
+    if (ränta_field.value === "0") {
         stats_månadskonstnad.innerText = Number((P / n).toFixed(0)).toLocaleString();
+    }
     else
         stats_månadskonstnad.innerText = M;
+    stats_lånebelopp.innerText = Number(lånebelopp_field.value).toLocaleString();
+    /* Details-code */
 }
