@@ -98,6 +98,7 @@ h2 {
 
 .details-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -218,9 +219,7 @@ td {
 th {
   padding: 20px 16px;
   text-align: left;
-  position: sticky;
   box-shadow: 0 4px 4px 1px rgba(200, 200, 200, 0.9);
-
 }
 
 td {
@@ -240,7 +239,7 @@ button {
   font-size: 1.4rem;
   font-weight: 500;
   color: teal;
-  transition: all ease 0.5s;
+  transition: color ease 0.5s;
 }
 
 button:hover {
@@ -271,5 +270,34 @@ button:hover {
 
   .settings-container {
     margin: 0.3rem 0 0.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+
+  main,
+  aside {
+    width: 320px;
+  }
+
+  th {
+    padding: 15px 3px;
+    text-align: center;
+  }
+
+  td {
+    padding: 12px 3px;
+  }
+
+  .details-header>h2 {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
+  .total-lånekostnad {
+    font-size: 2rem;
   }
 }
