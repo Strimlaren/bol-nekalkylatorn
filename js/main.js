@@ -136,7 +136,7 @@ function generate_table() {
                     <td>${Number(ränta.toFixed(0)).toLocaleString()}</td>
                     <td>${Number(values[0].toFixed(0)).toLocaleString()}</td>
                   </tr>`;
-        skuld -= values[0];
+        skuld -= amortering;
         total_ränta += ränta;
         ränta = (skuld * Number(ränta_field.value)) / 1200;
         amortering = values[0] - ränta;
