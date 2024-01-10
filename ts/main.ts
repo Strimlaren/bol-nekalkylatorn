@@ -22,20 +22,25 @@ const stats_lånebelopp = document.querySelector(
   "#stats-lånebelopp"
 ) as HTMLElement;
 const table = document.querySelector("#details-table") as HTMLElement;
+const generate_table_button = document.querySelector(
+  "button"
+) as HTMLButtonElement;
+
+generate_table_button.addEventListener("click", () => generate_table());
 
 /* Update the current slider values. No type validation is required here
 because we are using values from sliders which user cannot interfere with. */
 lånebelopp.oninput = () => {
   lånebelopp_field.value = lånebelopp.value;
-  calculate();
+  update_values();
 };
 ränta.oninput = () => {
   ränta_field.value = ränta.value;
-  calculate();
+  update_values();
 };
 amortering.oninput = () => {
   amortering_field.value = amortering.value;
-  calculate();
+  update_values();
 };
 
 /* Eventlitseners for all three text input fields on enter and lose focus. */
@@ -80,7 +85,7 @@ function validate(): void {
     is_valid_number(ränta_field.value) &&
     is_valid_number(amortering_field.value)
   ) {
-    calculate();
+    update_values();
   }
 }
 
@@ -89,35 +94,42 @@ function is_valid_number(value: string): boolean {
   return /^\d+(\.\d+)?$/.test(value);
 }
 
-function calculate(): void {
-  console.log("Calculations were conducted.");
-  table.innerHTML += `<tr>
-                <td>2013</td>
-                <td>1</td>
-                <td>600000</td>
-                <td>8800</td>
-                <td>2500</td>
-                <td>11300</td>
-              </tr>`;
-
+// Calculates the monthly payments amount
+function calculate_M(): number[] {
   const P: number = Number(lånebelopp_field.value);
   const r: number = Number(ränta_field.value) / 1200;
   const n: number = Number(amortering_field.value) * 12;
 
   const täljare: number = r * (1 + r) ** n;
   const nämnare: number = (1 + r) ** n - 1;
+  const kvot: number = P * (täljare / nämnare);
 
-  const M: string = Number(
-    (P * (täljare / nämnare)).toFixed(0)
-  ).toLocaleString();
+  return [kvot, P, n];
+}
+
+function update_values(): void {
+  const values: number[] = calculate_M();
+  const M: string = Number(values[0].toFixed(0)).toLocaleString();
 
   if (ränta_field.value === "0") {
     stats_månadskonstnad.innerText = Number(
-      (P / n).toFixed(0)
+      (values[1] / values[2]).toFixed(0)
     ).toLocaleString();
   } else stats_månadskonstnad.innerText = M;
 
   stats_lånebelopp.innerText = Number(lånebelopp_field.value).toLocaleString();
+  console.log(Number(values[0].toFixed(0)));
+}
 
-  /* Details-code */
+function generate_table(): void {
+  table.innerHTML = `<tr>
+                      <th>År, Mån</th>
+                      <th>Betalning #</th>
+                      <th>Skuld</th>
+                      <th>Amortering</th>
+                      <th>Ränta</th>
+                      <th>Att betala</th>
+                    </tr>`;
+
+  const att_betala = 5;
 }
