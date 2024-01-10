@@ -12,12 +12,14 @@
 
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: rgb(230, 228, 222);
 }
 
-main {
+main,
+aside {
   display: flex;
   background: whitesmoke;
   border-radius: 5px;
@@ -25,6 +27,15 @@ main {
   overflow: hidden;
   width: 950px;
   margin-top: 4rem;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  background: whitesmoke;
+  padding: 36px 12px 0 12px;
 }
 
 h2 {
@@ -41,7 +52,7 @@ h2 {
 .results-section {
   background: whitesmoke;
   width: 50%;
-  padding: 48px 12px 0 12px;
+  padding: 36px 12px 0 12px;
 }
 
 .settings-section {
@@ -79,6 +90,15 @@ h2 {
   justify-content: space-between;
   margin: 0.5rem 0;
   border-bottom: 1px solid rgba(128, 128, 128, 0.21);
+}
+
+.stats>p {
+  font-size: 1.2rem;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* SLIDER */
@@ -174,6 +194,17 @@ h6 {
 .failed {
   border-color: red;
   background-color: rgba(255, 0, 0, 0.256);
+}
+
+/* Table Styles */
+
+table {
+  background-color: rgb(230, 228, 222);
+  text-align: left;
+  padding: 20px 16px;
+  border: solid 1px rgb(210, 209, 205);
+  color: rgb(34, 37, 42);
+  margin-bottom: 20px;
 }
 
 @media (max-width: 960px) {
