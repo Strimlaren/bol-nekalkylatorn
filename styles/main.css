@@ -178,6 +178,7 @@ h6 {
   background-image: conic-gradient(teal 64%, orangered 64%);
   border-radius: 50%;
   position: relative;
+  transition: background-image 0.5s ease;
 }
 
 .pie.hollow::after {

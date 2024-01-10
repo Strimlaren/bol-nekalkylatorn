@@ -113,7 +113,6 @@ function generate_table() {
     const date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth();
-    console.log(month, year);
     table.innerHTML = `<tr>
                       <th>År, Mån</th>
                       <th>Betalning #</th>
@@ -129,14 +128,6 @@ function generate_table() {
     let iteration = 1;
     let total_ränta = 0;
     while (skuld > 0) {
-        let currentYear = date.getFullYear();
-        // let currentMonth = months[date.getMonth()];
-        // const currentYear = 2024;
-        // const currentMonth = 0;
-        // Do something with the current year and month
-        // console.log("Year:", currentYear, "Month:", currentMonth);
-        // Update the date to the next month
-        // date.setMonth(date.getMonth() + 1);
         table.innerHTML += `<tr>
                     <td>${year}, ${months[month]}</td>
                     <td>${iteration}</td>
@@ -156,6 +147,12 @@ function generate_table() {
             year++;
         }
     }
+    const pie = document.querySelector(".pie");
+    const percentage = 100 -
+        Number(((total_ränta / Number(lånebelopp_field.value)) * 100).toFixed(0));
+    console.log(percentage);
+    const forceReflow = pie.offsetHeight;
+    pie.style.backgroundImage = `conic-gradient(teal ${percentage}%, orangered ${percentage}%)`;
     stats_ränta.innerText = Number(total_ränta.toFixed()).toLocaleString();
     total_kostnad.innerText = Number((total_ränta + Number(lånebelopp_field.value)).toFixed()).toLocaleString();
 }
