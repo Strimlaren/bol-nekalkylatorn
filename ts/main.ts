@@ -183,8 +183,12 @@ function generate_table(): void {
   const pie = document.querySelector(".pie") as HTMLDivElement;
   const percentage: number =
     100 -
-    Number(((total_ränta / Number(lånebelopp_field.value)) * 100).toFixed(0));
-  console.log(percentage);
+    Number(
+      (
+        (total_ränta / Number(total_ränta + Number(lånebelopp_field.value))) *
+        100
+      ).toFixed(0)
+    );
 
   const forceReflow = pie.offsetHeight;
   pie.style.backgroundImage = `conic-gradient(teal ${percentage}%, orangered ${percentage}%)`;
