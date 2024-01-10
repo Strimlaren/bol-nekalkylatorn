@@ -13,6 +13,20 @@ const stats_lånebelopp = document.querySelector("#stats-lånebelopp");
 const table = document.querySelector("#details-table");
 const generate_table_button = document.querySelector("button");
 generate_table_button.addEventListener("click", () => generate_table());
+const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Maj",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Dec",
+];
 /* Update the current slider values. No type validation is required here
 because we are using values from sliders which user cannot interfere with. */
 lånebelopp.oninput = () => {
@@ -82,6 +96,7 @@ function calculate_M() {
     const kvot = P * (täljare / nämnare);
     return [kvot, P, n];
 }
+// Updates all values on the GUI
 function update_values() {
     const values = calculate_M();
     const M = Number(values[0].toFixed(0)).toLocaleString();
@@ -94,6 +109,11 @@ function update_values() {
     console.log(Number(values[0].toFixed(0)));
 }
 function generate_table() {
+    update_values();
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    console.log(month, year);
     table.innerHTML = `<tr>
                       <th>År, Mån</th>
                       <th>Betalning #</th>
@@ -102,5 +122,18 @@ function generate_table() {
                       <th>Ränta</th>
                       <th>Att betala</th>
                     </tr>`;
-    const att_betala = 5;
+    const values = calculate_M();
+    let skuld = Number(lånebelopp_field.value);
+    let ränta = (skuld * Number(ränta_field.value)) / 1200;
+    let amortering = values[0] - ränta;
+    let iteration = 1;
+    let total_ränta = 0;
+    table.innerHTML += `<tr>
+                      <td>År, Mån</td>
+                      <td>${iteration}</td>
+                      <td>${Number(skuld.toFixed(0)).toLocaleString()}</td>
+                      <td>${Number(amortering.toFixed(0)).toLocaleString()}</td>
+                      <td>${Number(ränta.toFixed(0)).toLocaleString()}</td>
+                      <td>${Number(values[0].toFixed(0)).toLocaleString()}</td>
+                    </tr>`;
 }

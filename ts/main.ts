@@ -28,6 +28,21 @@ const generate_table_button = document.querySelector(
 
 generate_table_button.addEventListener("click", () => generate_table());
 
+const months: string[] = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "Maj",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Okt",
+  "Nov",
+  "Dec",
+];
+
 /* Update the current slider values. No type validation is required here
 because we are using values from sliders which user cannot interfere with. */
 lånebelopp.oninput = () => {
@@ -107,6 +122,7 @@ function calculate_M(): number[] {
   return [kvot, P, n];
 }
 
+// Updates all values on the GUI
 function update_values(): void {
   const values: number[] = calculate_M();
   const M: string = Number(values[0].toFixed(0)).toLocaleString();
@@ -122,6 +138,12 @@ function update_values(): void {
 }
 
 function generate_table(): void {
+  update_values();
+  const date: Date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+
+  console.log(month, year);
   table.innerHTML = `<tr>
                       <th>År, Mån</th>
                       <th>Betalning #</th>
@@ -131,5 +153,19 @@ function generate_table(): void {
                       <th>Att betala</th>
                     </tr>`;
 
-  const att_betala = 5;
+  const values: number[] = calculate_M();
+  let skuld: number = Number(lånebelopp_field.value);
+  let ränta: number = (skuld * Number(ränta_field.value)) / 1200;
+  let amortering: number = values[0] - ränta;
+  let iteration: number = 1;
+  let total_ränta: number = 0;
+
+  table.innerHTML += `<tr>
+                      <td>År, Mån</td>
+                      <td>${iteration}</td>
+                      <td>${Number(skuld.toFixed(0)).toLocaleString()}</td>
+                      <td>${Number(amortering.toFixed(0)).toLocaleString()}</td>
+                      <td>${Number(ränta.toFixed(0)).toLocaleString()}</td>
+                      <td>${Number(values[0].toFixed(0)).toLocaleString()}</td>
+                    </tr>`;
 }
