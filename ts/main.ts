@@ -134,7 +134,7 @@ function update_values(): void {
   } else stats_månadskonstnad.innerText = M;
 
   stats_lånebelopp.innerText = Number(lånebelopp_field.value).toLocaleString();
-  console.log(Number(values[0].toFixed(0)));
+  stats_ränta.innerText = "?";
 }
 
 function generate_table(): void {
@@ -160,12 +160,34 @@ function generate_table(): void {
   let iteration: number = 1;
   let total_ränta: number = 0;
 
-  table.innerHTML += `<tr>
-                      <td>År, Mån</td>
-                      <td>${iteration}</td>
-                      <td>${Number(skuld.toFixed(0)).toLocaleString()}</td>
-                      <td>${Number(amortering.toFixed(0)).toLocaleString()}</td>
-                      <td>${Number(ränta.toFixed(0)).toLocaleString()}</td>
-                      <td>${Number(values[0].toFixed(0)).toLocaleString()}</td>
-                    </tr>`;
+  while (skuld > 0) {
+    // const currentYear = date.getFullYear();
+    // const currentMonth = date.getMonth() + 1; // Adding 1 to get the correct month
+    const currentYear = 2024;
+    const currentMonth = 0;
+    // Do something with the current year and month
+    // console.log("Year:", currentYear, "Month:", currentMonth);
+
+    // Update the date to the next month
+    date.setMonth(date.getMonth() + 1);
+
+    table.innerHTML += `<tr>
+                    <td>${currentYear}, ${currentMonth}</td>
+                    <td>${iteration}</td>
+                    <td>${Number(skuld.toFixed(0)).toLocaleString()}</td>
+                    <td>${Number(amortering.toFixed(0)).toLocaleString()}</td>
+                    <td>${Number(ränta.toFixed(0)).toLocaleString()}</td>
+                    <td>${Number(values[0].toFixed(0)).toLocaleString()}</td>
+                  </tr>`;
+
+    skuld -= values[0];
+    total_ränta += ränta;
+    ränta = (skuld * Number(ränta_field.value)) / 1200;
+    amortering = values[0] - ränta;
+    iteration++;
+  }
+  stats_ränta.innerText = Number(total_ränta.toFixed()).toLocaleString();
+  total_kostnad.innerText = Number(
+    (total_ränta + Number(lånebelopp_field.value)).toFixed()
+  ).toLocaleString();
 }
