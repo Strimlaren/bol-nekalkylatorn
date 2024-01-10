@@ -140,8 +140,8 @@ function update_values(): void {
 function generate_table(): void {
   update_values();
   const date: Date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth();
+  let year = date.getFullYear();
+  let month = date.getMonth();
 
   console.log(month, year);
   table.innerHTML = `<tr>
@@ -161,18 +161,18 @@ function generate_table(): void {
   let total_ränta: number = 0;
 
   while (skuld > 0) {
-    // const currentYear = date.getFullYear();
-    // const currentMonth = date.getMonth() + 1; // Adding 1 to get the correct month
-    const currentYear = 2024;
-    const currentMonth = 0;
+    let currentYear = date.getFullYear();
+    // let currentMonth = months[date.getMonth()];
+    // const currentYear = 2024;
+    // const currentMonth = 0;
     // Do something with the current year and month
     // console.log("Year:", currentYear, "Month:", currentMonth);
 
     // Update the date to the next month
-    date.setMonth(date.getMonth() + 1);
+    // date.setMonth(date.getMonth() + 1);
 
     table.innerHTML += `<tr>
-                    <td>${currentYear}, ${currentMonth}</td>
+                    <td>${year}, ${months[month]}</td>
                     <td>${iteration}</td>
                     <td>${Number(skuld.toFixed(0)).toLocaleString()}</td>
                     <td>${Number(amortering.toFixed(0)).toLocaleString()}</td>
@@ -185,6 +185,11 @@ function generate_table(): void {
     ränta = (skuld * Number(ränta_field.value)) / 1200;
     amortering = values[0] - ränta;
     iteration++;
+    month++;
+    if (month === 12) {
+      month = 0;
+      year++;
+    }
   }
   stats_ränta.innerText = Number(total_ränta.toFixed()).toLocaleString();
   total_kostnad.innerText = Number(
