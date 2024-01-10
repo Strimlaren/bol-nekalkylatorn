@@ -7,6 +7,10 @@ const ränta_field = document.querySelector("#ränta-field");
 const amortering = document.querySelector("#amorteringstid");
 const amortering_field = document.querySelector("#amorteringstid-field");
 const total_kostnad = document.querySelector(".total-lånekostnad");
+const stats_månadskonstnad = document.querySelector("#stats-månadskostnad");
+const stats_ränta = document.querySelector("#stats-ränta");
+const stats_lånebelopp = document.querySelector("#stats-lånebelopp");
+const table = document.querySelector("#details-table");
 /* Update the current slider values. No type validation is required here
 because we are using values from sliders which user cannot interfere with. */
 lånebelopp.oninput = () => {
@@ -66,6 +70,14 @@ function is_valid_number(value) {
 }
 function calculate() {
     console.log("Calculations were conducted.");
+    table.innerHTML += `<tr>
+                <td>2013</td>
+                <td>1</td>
+                <td>600000</td>
+                <td>8800</td>
+                <td>2500</td>
+                <td>11300</td>
+              </tr>`;
     const P = Number(lånebelopp_field.value);
     const r = Number(ränta_field.value) / 1200;
     const n = Number(amortering_field.value) * 12;
@@ -77,6 +89,3 @@ function calculate() {
     else
         stats_månadskonstnad.innerText = M;
 }
-const stats_månadskonstnad = document.querySelector("#stats-månadskostnad");
-const stats_ränta = document.querySelector("#stats-ränta");
-const stats_lånebelopp = document.querySelector("#stats-lånebelopp");

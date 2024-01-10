@@ -200,21 +200,54 @@ h6 {
 
 table {
   background-color: rgb(230, 228, 222);
-  text-align: left;
-  padding: 20px 16px;
-  border: solid 1px rgb(210, 209, 205);
   color: rgb(34, 37, 42);
   margin-bottom: 20px;
+  word-wrap: break-word;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+table,
+th,
+td {
+  border: 1px solid rgb(210, 209, 205);
+  border-collapse: collapse;
+}
+
+th {
+  padding: 20px 16px;
+  text-align: left;
+  position: sticky;
+  box-shadow: 0 4px 4px 1px rgba(200, 200, 200, 0.9);
+
+}
+
+td {
+  padding: 15px 16px;
 }
 
 @media (max-width: 960px) {
-  main {
+
+  main,
+  aside {
     flex-direction: column;
     width: 475px;
+  }
+
+  table {
+    font-size: 0.7rem;
   }
 
   .settings-section,
   .results-section {
     width: 100%;
+  }
+
+  .results-section {
+    margin-bottom: 36px;
+  }
+
+  .settings-container {
+    margin: 0.3rem 0 0.5rem 0;
   }
 }
