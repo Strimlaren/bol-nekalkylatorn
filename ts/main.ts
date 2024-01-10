@@ -117,7 +117,7 @@ function calculate_M(): number[] {
 
   const täljare: number = r * (1 + r) ** n;
   const nämnare: number = (1 + r) ** n - 1;
-  const kvot: number = P * (täljare / nämnare);
+  const kvot: number = nämnare !== 0 ? P * (täljare / nämnare) : P / n;
 
   return [kvot, P, n];
 }

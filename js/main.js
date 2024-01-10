@@ -93,7 +93,7 @@ function calculate_M() {
     const n = Number(amortering_field.value) * 12;
     const täljare = r * (1 + r) ** n;
     const nämnare = (1 + r) ** n - 1;
-    const kvot = P * (täljare / nämnare);
+    const kvot = nämnare !== 0 ? P * (täljare / nämnare) : P / n;
     return [kvot, P, n];
 }
 // Updates all values on the GUI
