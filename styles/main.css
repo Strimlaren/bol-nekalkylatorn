@@ -88,6 +88,7 @@ h2 {
 .stats {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0.5rem 0;
   border-bottom: 1px solid rgba(128, 128, 128, 0.21);
 }
@@ -176,7 +177,7 @@ h6 {
 .pie {
   width: 98px;
   height: 98px;
-  background-image: conic-gradient(teal 64%, orangered 64%);
+  background-image: conic-gradient(teal 100%, orangered 100%);
   border-radius: 50%;
   position: relative;
   transition: background-image 0.5s ease;
@@ -196,6 +197,22 @@ h6 {
 .failed {
   border-color: red;
   background-color: rgba(255, 0, 0, 0.256);
+}
+
+.legend {
+  display: inline-block;
+  width: 10px;
+  height: 6px;
+  border-radius: 3px;
+  margin: 4px;
+}
+
+.orangereds {
+  background-color: orangered;
+}
+
+.teals {
+  background-color: teal;
 }
 
 /* Table Styles */
@@ -278,6 +295,10 @@ button:hover {
   main,
   aside {
     width: 320px;
+  }
+
+  table {
+    font-size: 0.5rem;
   }
 
   th {
