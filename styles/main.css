@@ -223,20 +223,39 @@ table {
   margin-bottom: 20px;
   word-wrap: break-word;
   max-height: 500px;
-  overflow-y: scroll;
+  border-collapse: collapse;
+}
+
+thead th {
+  padding: 20px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  text-align: left;
+  box-shadow: 0 4px 4px 1px rgba(200, 200, 200, 0.9);
 }
 
 table,
 th,
 td {
   border: 1px solid rgb(210, 209, 205);
-  border-collapse: collapse;
 }
 
-th {
-  padding: 20px 16px;
-  text-align: left;
-  box-shadow: 0 4px 4px 1px rgba(200, 200, 200, 0.9);
+th,
+td {
+  display: table-cell;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(196, 193, 183);
+  border: 1px solid rgba(200, 200, 200, 0.9);
+}
+
+tbody {
+  max-height: 300px;
+  overflow-y: auto;
+  position: relative;
+  /* display: block; */
 }
 
 td {
@@ -247,6 +266,7 @@ td {
 td:first-of-type {
   text-align: left;
 }
+
 
 button {
   padding: 8px 18px;

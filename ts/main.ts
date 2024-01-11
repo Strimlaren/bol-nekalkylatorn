@@ -135,6 +135,7 @@ function update_values(): void {
 
   stats_lånebelopp.innerText = Number(lånebelopp_field.value).toLocaleString();
   stats_ränta.innerText = "?";
+  total_kostnad.innerText = "?";
 }
 
 function generate_table(): void {
@@ -143,15 +144,20 @@ function generate_table(): void {
   let year = date.getFullYear();
   let month = date.getMonth();
 
-  table.innerHTML = `<tr>
-                      <th>År, Mån</th>
-                      <th>Betalning #</th>
-                      <th>Skuld</th>
-                      <th>Amortering</th>
-                      <th>Ränta</th>
-                      <th>Att betala</th>
-                    </tr>`;
+  table.innerHTML = `<thead>
+                      <tr>
+                        <th>År, Mån</th>
+                        <th>Betalning #</th>
+                        <th>Skuld</th>
+                        <th>Amortering</th>
+                        <th>Ränta</th>
+                        <th>Att betala</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-head">
+                    </tbody>`;
 
+  const table_head = document.querySelector("#table-head") as HTMLElement;
   const values: number[] = calculate_M();
   let skuld: number = Number(lånebelopp_field.value);
   let ränta: number = (skuld * Number(ränta_field.value)) / 1200;
@@ -160,7 +166,7 @@ function generate_table(): void {
   let total_ränta: number = 0;
 
   while (skuld > 0) {
-    table.innerHTML += `<tr>
+    table_head.innerHTML += `<tr>
                     <td>${year}, ${months[month]}</td>
                     <td>${iteration}</td>
                     <td>${Number(skuld.toFixed(0)).toLocaleString()}</td>
