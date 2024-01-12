@@ -8,6 +8,7 @@
   margin: 0;
   list-style-type: none;
   font-family: "Barlow", sans-serif;
+  color: rgb(34, 37, 42);
 }
 
 body {
@@ -40,6 +41,10 @@ aside {
 
 h2 {
   color: black;
+}
+
+h5 {
+  font-size: 1.5rem;
 }
 
 .header {
@@ -228,34 +233,26 @@ table {
 
 thead th {
   padding: 20px 16px;
-  position: sticky;
-  top: 0;
-  z-index: 3;
   text-align: left;
   box-shadow: 0 4px 4px 1px rgba(200, 200, 200, 0.9);
 }
 
+
 table,
 th,
-td {
+td,
+tr {
   border: 1px solid rgb(210, 209, 205);
 }
 
-th,
-td {
-  display: table-cell;
-}
-
-tr:nth-child(even) {
+tr:nth-child(even) td {
   background-color: rgb(196, 193, 183);
-  border: 1px solid rgba(200, 200, 200, 0.9);
+  border: 1px solid rgb(230, 228, 222);
 }
 
 tbody {
   max-height: 300px;
   overflow-y: auto;
-  position: relative;
-  /* display: block; */
 }
 
 td {
