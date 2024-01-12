@@ -196,7 +196,6 @@ function generate_table(): void {
       ).toFixed(0)
     );
 
-  // const forceReflow = pie.offsetHeight;
   pie.style.backgroundImage = `conic-gradient(teal ${percentage}%, orangered ${percentage}%)`;
 
   stats_ränta.innerText = Number(total_ränta.toFixed()).toLocaleString();
